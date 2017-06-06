@@ -206,6 +206,8 @@ class JsonResponse extends Response
      */
     public function getContent()
     {
+        if($this->getStatusCode() == 204 || $this->getStatusCode() == 205)
+            return "";
         $content = json_encode($this->getResponseData(), $this->encodingOptions);
 
         if ($content === false || json_last_error() !== JSON_ERROR_NONE) {
